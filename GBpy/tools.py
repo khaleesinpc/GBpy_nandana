@@ -391,31 +391,4 @@ def unique_rows_tol(data, tol=1e-12, return_index=False, return_inverse=False):
 # -----------------------------------------------------------------------------------------------------------
 
 
-def test_unique_rows():
-    prec = 1.e-5
-    mat = np.array([[-1e-6, 1, 1], [1e-7, 1, 1], [0, 1, 1], [1, 1, 1]])
-    c, ia, ic = unique_rows_tol(mat, prec, True, True)
-    print unique_rows_tol(mat, prec, True, True)
-# -----------------------------------------------------------------------------------------------------------
 
-
-def test_lll_reduction():
-    Mat = np.zeros(5, dtype=[('Mat', '(3,2)float64'),('Matrix', '(3,3)float64')])
-    Mat['Mat'][0] = np.array(([1, 2, 0], [-4, 5, 6])).T
-    Mat['Mat'][1] = np.array(([-1, 2, 3], [-4, 0, 6])).T
-    Mat['Mat'][2] = np.array(([1, 2, 0], [-4, 5, 6])).T
-    Mat['Mat'][3] = np.array(([1, 2, 3], [-4, 5, 6])).T
-    Mat['Mat'][4] = np.array(([1, 2, 25], [-4, 5, 6])).T
-    Mat['Matrix'][0] = np.array(([1, 2, 0], [-4, 5, 6], [7, 8, 15]))
-    Mat['Matrix'][1] = np.array(([-1, 2, 3], [-4, 0, 6], [3, 0, 0]))
-    Mat['Matrix'][2] = np.array(([1, 2, 0], [-4, 5, 6], [3, 0, -1]))
-    Mat['Matrix'][3] = np.array(([1, 2, 3], [-4, 5, 6], [2, -2, 1]))
-    Mat['Matrix'][4] = np.array(([1, 2, 25], [-4, 5, 6], [3, -2, 0]))
-    for j in Mat.dtype.names:
-        for i in range(Mat.shape[0]):
-            # a, H = lll_reduction_3by2(Mat['Matrix'][i])
-            b = lll_reduction(Mat[j][i])
-            # print Mat['Matrix'][i], '\n reduced: \n', H, '\n-------\n'
-            print '\n______________________________________________\n'
-            print Mat[j][i], '\n reduced: \n', b, '\n-------\n'
-# -----------------------------------------------------------------------------------------------------------
